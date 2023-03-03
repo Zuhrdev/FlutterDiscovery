@@ -1,4 +1,6 @@
 //import 'package:flutter/cupertino.dart';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 //import 'package:flutter/material.dart';
 
@@ -29,6 +31,8 @@ class InterractifPageState extends State<InterractifPage> {
     "oignons": false,
     "frommage": true,
   };
+  int groupValue = 1;
+
 
   @override
   void initState() {
@@ -102,7 +106,7 @@ class InterractifPageState extends State<InterractifPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(padding: EdgeInsets.only(left: 20), child:               Text((switchValue)? "Vous êtes localisés": "Votre GPS n'est pas activé"),),
+              Padding(padding: EdgeInsets.only(left: 20), child: Text((switchValue)? "Vous êtes localisés": "Votre GPS n'est pas activé"),),
               Switch(activeColor : Colors.green, value: switchValue, onChanged: ((bool) {setState(() { switchValue = bool ;});})),
             ],
           ),
@@ -122,6 +126,12 @@ class InterractifPageState extends State<InterractifPage> {
           Text("Value : ${sliderValue.toInt()}"),
           Checkbox(value: checkBoxValue, onChanged: ((newBool) => setState(() => checkBoxValue = newBool ?? false))),
           checks(),
+          Radio(value: 0, groupValue: groupValue, onChanged: ((newValue) {
+            setState(() {
+              groupValue = newValue as int;
+            });
+          })),
+          radios(),
         ],
       ),),
       floatingActionButton: FloatingActionButton(
@@ -175,6 +185,19 @@ class InterractifPageState extends State<InterractifPage> {
       items.add(row);
     });
     return Column(children: items);
+  }
+
+  Row radios() {
+    List<Widget> radios = [];
+    for (var i = 0; i < 5; i++) {
+      Radio r = Radio(value: i, groupValue: groupValue, onChanged: ((newValue) {
+        setState(() {
+          groupValue = newValue as int;
+        });
+      }));
+      radios.add(r);
+    }
+    return Row(children: radios,);
   }
 
 
