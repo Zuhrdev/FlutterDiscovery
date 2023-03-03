@@ -50,9 +50,9 @@ class ExerciseWidget extends StatefulWidget {
               children: [
                 Container(
                   margin: EdgeInsets.all(5),
-                  color: Colors.purple,
                   height: 200,
                   width: size.width,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.purple, border: Border.all(color: Colors.black, width: 3)),
                 ),
                 Padding(padding: EdgeInsets.only(top: 20),
                   child:
@@ -60,28 +60,28 @@ class ExerciseWidget extends StatefulWidget {
                   ,)
               ],
             ),
-            Container(margin: EdgeInsets.all(5), alignment: Alignment.center,
+            Container(margin: EdgeInsets.all(5),alignment: Alignment.center,
               child: MainTitleText(data: "Modifier les infos",),
             ),
             Column(
               children: [
-                TextField(
-                  controller: controllerName,
-                  decoration: InputDecoration(hintText: "Nom"),
-                  onChanged: (newString) {setState(() {
-                    name = newString;
-                  });},
-                ),
-                TextField(
-                  controller: controllerSurname,
-                  decoration: InputDecoration(hintText: "Prénom"),
-                  onChanged: (newString) {setState(() {
-                    prenom = newString;
-                  });},
-                ),
-
+                Padding(padding: EdgeInsets.all(10),
+                  child:                 TextField(
+                    controller: controllerName,
+                    decoration: InputDecoration(hintText: "Nom", border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
+                    onChanged: (newString) {setState(() {
+                      name = newString;
+                    });},
+                  ),),
+                Padding(padding: EdgeInsets.all(10),
+                  child:                TextField(
+                    controller: controllerSurname,
+                    decoration: InputDecoration(hintText: "Prénom", border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
+                    onChanged: (newString) {setState(() {
+                      prenom = newString;
+                    });},
+                  ),),
                 userInfos(controllerSecret, "Entrez votre phrase secrète", true, secret),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
